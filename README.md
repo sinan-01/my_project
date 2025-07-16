@@ -1,6 +1,7 @@
 # my_project
 
-**Web sitem:** [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+**Web sitem:** [https://sinan-01.github.io/my_project/](https://sinan-01.github.io/my_project/)
+
 
 <p align="center">
 <a href="https://sinansiten.com" target="_blank">
