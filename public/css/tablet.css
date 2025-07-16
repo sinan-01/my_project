@@ -1,0 +1,131 @@
+/* tablet.css - 768px ile 1024px arası ekranlar için */
+.navbar {
+    padding: 0 2%;
+}
+
+.logo-img {
+    height: 40px;
+}
+
+.nav-links li {
+    margin: 0 8px;
+}
+
+.nav-links a {
+    font-size: 14px;
+}
+
+.search-container input {
+    width: 150px;
+    padding: 8px 8px 8px 35px;
+}
+
+.search-container input:focus {
+    width: 180px;
+}
+
+.search-icon {
+    left: 8px;
+}
+
+.search-img {
+    width: 16px;
+    height: 16px;
+}
+
+/* Responsive Slider ve Günün Alıntısı - Tablet */
+@media (max-width: 1024px) {
+    .hero-section {
+        padding: 0 2%;
+    }
+
+    .slider-container {
+        height: 400px;
+    }
+
+    .daily-quote {
+        height: 400px;
+    }
+
+    .slide-content {
+        left: 30px;
+        bottom: 40px;
+        max-width: 70%;
+    }
+
+    .slide-content h2 {
+        font-size: 20px;
+    }
+
+    .quote-item p {
+        font-size: 16px;
+    }
+}
+
+/* kitablar ve jurnallar cardi */
+@media (max-width: 1024px) and (min-width: 768px) {
+    .cards-container {
+        gap: 20px;
+    }
+
+    .card {
+        width: 230px;
+        height: 340px;
+    }
+
+    .card .content h3 {
+        font-size: 1.1em;
+    }
+
+    .card .content p {
+        font-size: 0.8em;
+    }
+}
+
+
+/* footer */
+@media (min-width: 768px) and (max-width: 1024px) {
+
+    .footer-container {
+
+        flex-direction: column;
+        /* Dikey düzen */
+
+        align-items: center;
+        /* Ortala */
+
+    }
+
+
+    .footer-links,
+    .footer-contact,
+    .footer-social {
+
+        margin: 10px 0;
+        /* Dikey boşluk */
+
+        text-align: center;
+        /* Metni ortala */
+
+    }
+
+
+    .footer-links h4,
+    .footer-contact h4,
+    .footer-social h4 {
+
+        font-size: 18px;
+        /* Başlık boyutu */
+
+    }
+
+
+    .footer-links a,
+    .footer-social a {
+
+        font-size: 16px;
+        /* Bağlantı boyutu */
+
+    }
+
+}

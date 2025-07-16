@@ -1,0 +1,226 @@
+/* mobile.css - 767px ve altı ekranlar için */
+.navbar {
+    padding: 0 5%;
+}
+
+.logo-img {
+    height: 35px;
+}
+
+.nav-links {
+    display: none;
+}
+
+.search-container {
+    display: none;
+}
+
+.burger-menu {
+    display: block;
+}
+
+.mobile-menu.open {
+    display: block;
+}
+
+.mobile-menu ul {
+    margin-bottom: 20px;
+}
+
+.mobile-menu li {
+    margin: 0;
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-menu a {
+    padding: 15px 0;
+}
+
+.mobile-search {
+    margin-top: 15px;
+}
+
+.mobile-search .search-img {
+    width: 18px;
+    height: 18px;
+}
+
+main {
+    padding-top: 80px;
+}
+
+/* Responsive Slider ve Günün Alıntısı - Mobile */
+@media (max-width: 767px) {
+    .hero-section {
+        flex-direction: column;
+        padding: 0;
+    }
+
+    .slider-container {
+        width: 100%;
+        height: 350px;
+    }
+
+    .daily-quote {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+    }
+
+    .slide-content {
+        left: 20px;
+        bottom: 60px;
+        max-width: 80%;
+        padding: 15px;
+    }
+
+    .slide-content h2 {
+        font-size: 18px;
+        margin-bottom: 5px;
+    }
+
+    .slide-content p {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .quote-container {
+        padding: 15px;
+    }
+
+    .quote-item {
+        padding: 15px 10px;
+    }
+
+    .quote-item h3 {
+        font-size: 18px;
+        margin-bottom: 15px;
+    }
+
+    .quote-item p {
+        font-size: 15px;
+    }
+
+    .slider-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 16px;
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+}
+
+/* kitablar ve jurnallar cardi */
+@media (max-width: 767px) {
+    .cards-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .card {
+        width: 280px;
+        height: 380px;
+    }
+}
+
+/* footer */
+@media (max-width: 767px) {
+
+    .footer-container {
+
+        flex-direction: column;
+        /* Dikey düzen */
+
+        align-items: center;
+        /* Ortala */
+
+    }
+
+
+    .footer-links,
+    .footer-contact,
+    .footer-social {
+
+        margin: 10px 0;
+        /* Dikey boşluk */
+
+        text-align: center;
+        /* Metni ortala */
+
+    }
+
+
+    .footer-links h4,
+    .footer-contact h4,
+    .footer-social h4 {
+
+        font-size: 16px;
+        /* Başlık boyutu */
+
+    }
+
+
+    .footer-links a,
+    .footer-social a {
+
+        font-size: 14px;
+        /* Bağlantı boyutu */
+
+    }
+
+}
+    /* jurnallar footer */
+      @media only screen and (max-width: 767px) {
+        /* Jurnallar içerikleri mobilde alt alta gelsin */
+        main.container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+    
+        /* Footer sosyal medya ikonlarını ortala */
+        .footer-social ul {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            padding: 0;
+            margin: 0 auto;
+        }
+    
+        .footer-social {
+            text-align: center;
+        }
+    }
+    /* jurnallar */
+    @media (max-width: 767px) {
+        footer {
+            padding: 15px 10px;
+        }
+       
+        .footer-container {
+            flex-direction: column;
+            align-items: center;
+        }
+       
+        .footer-links, .footer-contact, .footer-social {
+            margin-bottom: 15px;
+            text-align: center;
+            width: 100%;
+        }
+       
+        /* Mobil görünümde jurnallar için ek düzeltme */
+        .container .glass {
+            margin-bottom: 20px;
+            width: 200px; /* Daha küçük boyut */
+            height: 230px;
+        }
+    }
+    

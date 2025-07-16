@@ -1,0 +1,972 @@
+
+
+
+/* style.css - Ana CSS dosyası */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f2f1;
+    color: #333;
+}
+
+/* header */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 5%;
+    height: 80px;
+}
+
+.logo a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo a:hover .logo-img {
+    transform: scale(1.05);
+}
+
+.nav-links ul {
+    display: flex;
+    list-style: none;
+}
+
+.nav-links li {
+    margin: 0 15px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 10px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #ff6b6b;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ff6b6b;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.search-icon {
+    position: absolute;
+    left: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-img {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.search-icon:hover .search-img {
+    transform: scale(1.1);
+}
+
+.search-container input {
+    padding: 10px 10px 10px 40px;
+    border: 1px solid #ddd;
+    border-radius: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    width: 200px;
+    transition: width 0.3s ease, border-color 0.3s ease;
+}
+
+.search-container input:focus {
+    outline: none;
+    width: 250px;
+    border-color: #ff6b6b;
+}
+
+.burger-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.burger-icon {
+    width: 30px;
+    height: 20px;
+    position: relative;
+    transform: rotate(0deg);
+    transition: 0.5s ease-in-out;
+}
+
+.burger-icon span {
+    display: block;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    background: #333;
+    border-radius: 9px;
+    opacity: 1;
+    left: 0;
+    transform: rotate(0deg);
+    transition: 0.25s ease-in-out;
+}
+
+.burger-icon span:nth-child(1) {
+    top: 0px;
+}
+
+.burger-icon span:nth-child(2) {
+    top: 9px;
+}
+
+.burger-icon span:nth-child(3) {
+    top: 18px;
+}
+
+.burger-icon.open span:nth-child(1) {
+    top: 9px;
+    transform: rotate(135deg);
+}
+
+.burger-icon.open span:nth-child(2) {
+    opacity: 0;
+    left: -60px;
+}
+
+.burger-icon.open span:nth-child(3) {
+    top: 9px;
+    transform: rotate(-135deg);
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.mobile-menu ul {
+    list-style: none;
+}
+
+.mobile-menu li {
+    margin: 15px 0;
+}
+
+.mobile-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 18px;
+    display: block;
+    padding: 10px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.mobile-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: #ff6b6b;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.mobile-menu a:hover {
+    color: #ff6b6b;
+}
+
+.mobile-menu a:hover::after {
+    width: 100%;
+}
+
+.mobile-search {
+    margin-top: 20px;
+    position: relative;
+}
+
+.mobile-search input {
+    width: 100%;
+    padding: 12px 40px 12px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+}
+
+.mobile-search .search-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    left: auto;
+}
+
+main {
+    padding-top: 100px;
+    min-height: calc(100vh - 80px);
+}
+
+/* slider */
+/* Slider ve günün alıntısı bölümü için CSS */
+.hero-section {
+    display: flex;
+    margin-top: 80px;
+    padding: 0 5%;
+    background-color: #fff;
+}
+
+/* Slider Bölümü */
+.slider-container {
+    width: 70%;
+    height: 500px;
+    position: relative;
+    overflow: hidden;
+}
+
+.slider {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-content {
+    position: absolute;
+    bottom: 60px;
+    left: 40px;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    max-width: 60%;
+    border-radius: 5px;
+}
+
+.slide-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.slide-content p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #555;
+}
+
+.scroll-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6b6b;
+    color: #fff;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.scroll-btn:hover {
+    background-color: #ff5252;
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #333;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+}
+
+.slider-btn:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #ff6b6b;
+}
+
+/* Günün Alıntısı Bölümü */
+.daily-quote {
+    width: 30%;
+    height: 500px;
+    background-color: #fff;
+    border-radius: 0 5px 5px 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.quote-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 20px;
+}
+
+.quote-tabs {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.tab-btn {
+    padding: 10px 15px;
+    border: none;
+    background: none;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+.tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #ff6b6b;
+    transition: width 0.3s ease;
+}
+
+.tab-btn:hover {
+    color: #ff6b6b;
+}
+
+.tab-btn.active {
+    color: #ff6b6b;
+}
+
+.tab-btn.active::after {
+    width: 100%;
+}
+
+.quote-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-item {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 0.5s ease;
+}
+
+.quote-item.active {
+    display: block;
+}
+
+.quote-icon {
+    margin-bottom: 15px;
+}
+
+.quote-icon img {
+    width: 40px;
+    height: 40px;
+}
+
+.quote-item h3 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.quote-item p {
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: #555;
+    font-style: italic;
+}
+
+.quote-source {
+    display: block;
+    font-size: 14px;
+    color: #888;
+    margin-top: 10px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Özellikli İçerik Bölümü */
+.featured-section {
+    padding: 60px 5%;
+    background-color: #f9f2f1;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 40px;
+    color: #333;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background-color: #ff6b6b;
+}
+
+.featured-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* cardlar */
+/* kitab ve jurnal cardlari */
+
+.cards-container {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 40px 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    position: relative;
+    width: 280px;
+    height: 380px;
+    color: #fff;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.card:hover {
+    transform: translateY(-20px);
+}
+
+.card::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: linear-gradient(45deg, #e6beac, #e65a30);
+    border-radius: 1.2em;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #00ADB5, #00FFF5);
+    filter: blur(30px);
+}
+
+.card span {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    bottom: 6px;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 2;
+    border-radius: 1em;
+}
+
+.card span::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.card-image {
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    height: 60%;
+    overflow: hidden;
+    border-radius: 0.8em 0.8em 0 0;
+    padding: 12px 12px 0 12px;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0.8em 0.8em 0 0;
+    transition: transform 0.5s;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.05);
+}
+
+.card .content {
+    position: relative;
+    padding: 15px;
+    z-index: 10;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.content {
+    margin-top: 20px;
+}
+
+.card .content h3 {
+    font-size: 1.2em;
+    margin-bottom: 8px;
+    font-weight: 700;
+}
+
+.card .content p {
+    font-size: 0.9em;
+    margin-bottom: 25px;
+    opacity: 0.8;
+}
+
+.card-btn {
+    padding: 8px 15px;
+    background: linear-gradient(45deg, #00ADB5, #00FFF5);
+    border: none;
+    border-radius: 20px;
+    color: white;
+    font-weight: 600;
+    font-size: 0.9em;
+    text-decoration: none;
+    display: inline-block;
+    align-self: flex-start;
+    transition: transform 0.3s;
+    margin-bottom: 60px;
+}
+
+.card-btn:hover {
+    transform: scale(1.05);
+}
+
+/* footer */
+/* Footer Stilleri - Bu kodları styles.css dosyasında mevcut footer stillerinin yerine koyun */
+/* Body ve html düzenlemeleri - Bu en önemlisi */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f2f1;
+    color: #333;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* viewport yüksekliği kadar minimum yükseklik */
+}
+
+/* Ana içerik alanı için flex-grow:1 kritik */
+main.container {
+    flex: 1 0 auto; /* flex-grow:1 içeriğin genişlemesini sağlar */
+    margin-top: 80px; /* header'ın yüksekliği */
+    padding-bottom: 30px; /* içerik alt boşluğu */
+}
+
+/* Footer stilleri */
+footer {
+    flex-shrink: 0; /* footer küçülmesini engelle */
+    background-color: #f8f8f8;
+    padding: 20px 20px 10px 20px;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    width: 100%;
+}
+ 
+/* Footer düzenlemeleri */
+.footer-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.footer-links, .footer-contact, .footer-social {
+    flex: 1;
+    min-width: 150px;
+    margin: 5px;
+}
+
+.footer-links h4, .footer-contact h4, .footer-social h4 {
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.footer-links ul, .footer-social ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links li, .footer-social li {
+    margin: 5px 0;
+}
+
+.footer-links a, .footer-social a {
+    text-decoration: none;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: #ff6b6b;
+}
+
+.footer-social ul {
+    display: flex;
+    padding: 0;
+}
+
+.footer-social li {
+    margin-right: 10px;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 10px;
+    color: #777;
+}
+
+
+
+/* Responsive ayarlar */
+
+
+@media (max-width: 767px) {
+    footer {
+        padding: 15px 10px;
+    }
+   
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+    }
+   
+    .footer-links, .footer-contact, .footer-social {
+        margin-bottom: 15px;
+        text-align: center;
+        width: 100%;
+    }
+   
+    /* Mobil görünümde jurnallar için ek düzeltme */
+    .container .glass {
+        margin-bottom: 20px;
+        width: 200px; /* Daha küçük boyut */
+        height: 230px;
+    }
+}
+  
+
+
+/* Jurnallar */
+/* Jurnallar Kısmı İçin */
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Kutular arasında boşluk */
+    
+    
+}
+
+.container .glass {
+    position: relative;
+    width: 300px; /* Daha küçük boyut */
+    height: 330px;
+    background: linear-gradient(#fff2, transparent);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 15px 15px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s;
+    border-radius: 10px;
+    transform: rotate(calc(var(--r) * 1deg));
+    
+}
+
+.container:hover .glass {
+    transform: rotate(0deg);
+}
+
+.container .glass::before {
+    content: attr(data-text);
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #f57d7d;
+    font-size: 12px;
+}
+
+.container .glass img {
+    width: 100%;  /* Kutunun tamamını kaplasın */
+    height: 100%;
+    object-fit: cover;  /* Fotoğrafı kutuya sığdır, kırpma yapabilir */
+    border-radius: 10px; /* Köşeleri kutuya uyumlu hale getir */
+}
+
+  
+
+
+
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    flex: 1;
+}
+
+footer {
+    clear: both;
+    background-color: #f2f2f2;
+    padding: 20px 0;
+}
+
+/* kitablar */
+/* Book cards container */
+.books-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 70px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.book {
+    position: relative;
+    border-radius: 10px;
+    width: 220px;
+    height: 300px;
+    background-color: #f5f5f5;
+    -webkit-box-shadow: 1px 1px 12px #000;
+    box-shadow: 1px 1px 12px #000;
+    -webkit-transform: preserve-3d;
+    -ms-transform: preserve-3d;
+    transform: preserve-3d;
+    -webkit-perspective: 2000px;
+    perspective: 2000px;
+    display: flex;
+    flex-direction: column;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    color: #000;
+    padding: 20px;
+    overflow: hidden; /* Ekledik */
+}
+
+.book-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 5px 0;
+    text-align: center;
+    position: relative; /* Ekledik */
+    z-index: 0; /* Değiştirdik */
+}
+
+.book-author {
+    font-size: 14px;
+    margin: 5px 0;
+    text-align: center;
+    position: relative; /* Ekledik */
+    z-index: 0; /* Değiştirdik */
+}
+
+.cover {
+    top: 0;
+    left: 0; /* Ekledik */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    -webkit-transform-origin: 0;
+    -ms-transform-origin: 0;
+    transform-origin: 0;
+    -webkit-box-shadow: 1px 1px 12px #000;
+    box-shadow: 1px 1px 12px #000;
+    overflow: hidden;
+    z-index: 1; /* Ekledik */
+    background-color: white; /* Ekledik */
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.book:hover .cover {
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+    -webkit-transform: rotatey(-80deg);
+    -ms-transform: rotatey(-80deg);
+    transform: rotatey(-80deg);
+}
