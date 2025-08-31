@@ -5,6 +5,10 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+        <link rel="shortcut icon" type="image/png" href="{{ asset('images/favicon.png') }}">
+
         <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
@@ -13,6 +17,13 @@
 
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+        <!-- Admin panel CSS dosyaları (login sayfasında da stil bozulmasın diye eklendi) -->
+        <link rel="stylesheet" href="{{ asset('asset/css/bootstrap.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('asset/css/lineicons.css') }}" />
+        <link rel="stylesheet" href="{{ asset('asset/css/materialdesignicons.min.css') }}" />
+        <link rel="stylesheet" href="{{ asset('asset/css/fullcalendar.css') }}" />
+        <link rel="stylesheet" href="{{ asset('asset/css/main.css') }}" />
     </head>
     <body class="font-sans text-gray-900 antialiased">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100 dark:bg-gray-900">

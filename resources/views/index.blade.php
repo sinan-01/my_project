@@ -61,36 +61,60 @@
     <section class="hero-section">
         <div class="slider-container">
             <div class="slider">
-                <div class="slide active">
-                    <img src="{{ asset('images/slide1.jpg') }}" alt="Slider Resim 1">
-                    <div class="slide-content">
-                        <h2>GYMD Yayınları</h2>
-                        <p>Keyfiyyətli kitablar və jurnallar</p>
-                        <a href="#featured" class="scroll-btn">kəşf edin</a>
+                @if($sliders->count() > 0)
+                    @foreach($sliders as $index => $slider)
+                        <div class="slide {{ $index === 0 ? 'active' : '' }}">
+                            @if($slider->image)
+                                <img src="{{ asset('storage/' . $slider->image) }}" alt="{{ $slider->title }}">
+                            @else
+                                <img src="{{ asset('images/slide' . ($index + 1) . '.jpg') }}" alt="{{ $slider->title }}">
+                            @endif
+                            <div class="slide-content">
+                                <h2>{{ $slider->title ?? 'GYMD Yayınları' }}</h2>
+                                <p>{{ $slider->description ?? 'Keyfiyyətli kitablar və jurnallar' }}</p>
+                                <a href="#featured" class="scroll-btn">kəşf edin</a>
+                            </div>
+                        </div>
+                    @endforeach
+                @else
+                    <!-- Varsayılan slider -->
+                    <div class="slide active">
+                        <img src="{{ asset('images/slide1.jpg') }}" alt="Slider Resim 1">
+                        <div class="slide-content">
+                            <h2>GYMD Yayınları</h2>
+                            <p>Keyfiyyətli kitablar və jurnallar</p>
+                            <a href="#featured" class="scroll-btn">kəşf edin</a>
+                        </div>
                     </div>
-                </div>
-                <div class="slide">
-                    <img src="{{ asset('images/slide2.jpg') }}" alt="Slider Resim 2">
-                    <div class="slide-content">
-                        <h2>Yeni Kitablar</h2>
-                        <p>En son yayınlarımız</p>
-                        <a href="#featured" class="scroll-btn">kəşf edin</a>
+                    <div class="slide">
+                        <img src="{{ asset('images/slide2.jpg') }}" alt="Slider Resim 2">
+                        <div class="slide-content">
+                            <h2>Yeni Kitablar</h2>
+                            <p>Ən son yayınlarımız</p>
+                            <a href="#featured" class="scroll-btn">kəşf edin</a>
+                        </div>
                     </div>
-                </div>
-                <div class="slide">
-                    <img src="{{ asset('images/slide3.jpg') }}" alt="Slider Resim 3">
-                    <div class="slide-content">
-                        <h2>Populyar Jurnallar</h2>
-                        <p>Ən çox oxunan jurnallarımız</p>
-                        <a href="#featured" class="scroll-btn">kəşf edin</a>
+                    <div class="slide">
+                        <img src="{{ asset('images/slide3.jpg') }}" alt="Slider Resim 3">
+                        <div class="slide-content">
+                            <h2>Populyar Jurnallar</h2>
+                            <p>Ən çox oxunan jurnallarımız</p>
+                            <a href="#featured" class="scroll-btn">kəşf edin</a>
+                        </div>
                     </div>
-                </div>
+                @endif
                 <button class="slider-btn prev-btn">&#10094;</button>
                 <button class="slider-btn next-btn">&#10095;</button>
                 <div class="slider-dots">
-                    <span class="dot active" data-index="0"></span>
-                    <span class="dot" data-index="1"></span>
-                    <span class="dot" data-index="2"></span>
+                    @if($sliders->count() > 0)
+                        @foreach($sliders as $index => $slider)
+                            <span class="dot {{ $index === 0 ? 'active' : '' }}" data-index="{{ $index }}"></span>
+                        @endforeach
+                    @else
+                        <span class="dot active" data-index="0"></span>
+                        <span class="dot" data-index="1"></span>
+                        <span class="dot" data-index="2"></span>
+                    @endif
                 </div>
             </div>
         </div>
@@ -107,16 +131,26 @@
                             <img src="{{ asset('images/islam.svg') }}" alt="Hadis İkonu">
                         </div>
                         <h3>Günün Hədisi</h3> 
-                        <p>"İlim öğrenmek her Müslümana farzdır."</p>
-                        <span class="quote-source">- Hz. Muhammed (s.a.v.)</span>
+                        @if($randomHadith)
+                            <p>"{{ $randomHadith->text }}"</p>
+                            <span class="quote-source">- {{ $randomHadith->source ?? 'Hz. Muhammed (s.a.v.)' }}</span>
+                        @else
+                            <p>"İlim öğrenmek her Müslümana farzdır."</p>
+                            <span class="quote-source">- Hz. Muhammed (s.a.v.)</span>
+                        @endif
                     </div>
                     <div class="quote-item" id="ayet">
                         <div class="quote-icon">
                             <img src="{{ asset('images/islam.svg') }}" alt="Ayet İkonu">
                         </div>
                         <h3>Günün Ayəti</h3>
-                        <p>"Hiç bilenlerle bilmeyenler bir olur mu?"</p>
-                        <span class="quote-source">- Zümer Suresi, 9. Ayet</span>
+                        @if($randomVerse)
+                            <p>"{{ $randomVerse->text }}"</p>
+                            <span class="quote-source">- {{ $randomVerse->source ?? 'Kuran-ı Kerim' }}</span>
+                        @else
+                            <p>"Hiç bilenlerle bilmeyenler bir olur mu?"</p>
+                            <span class="quote-source">- Zümer Suresi, 9. Ayet</span>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -125,9 +159,10 @@
 
     <!-- Özellikli içerik bölümü -->
     <section id="featured" class="featured-section">
-        <h2 class="section-title">Öne Çıxan Yayınlar</h2>
+        <h2 class="section-title">Önə Çıxan Yayınlar</h2>
+        
         <div class="featured-content">
-            <!-- kitablar ve jurnallar cardi -->
+            <!-- Reklam kartları -->
             <section class="cards-container">
                 <div class="card">
                     <span></span>
@@ -136,8 +171,8 @@
                     </div>
                     <div class="content">
                         <h2>Kitablar</h2>
-                        <p>Kart içeriği açıklaması burada yer alacak.</p>
-                        <a href="{{ route('kitablar') }}" class="card-btn">Detaylar</a>
+                        <p>Bütün kitablarımızı kəşf edin.</p>
+                        <a href="{{ route('kitablar') }}" class="card-btn">Detallar</a>
                     </div>
                 </div>
                 
@@ -148,8 +183,8 @@
                     </div>
                     <div class="content">
                         <h2>Jurnallar</h2>
-                        <p>Kart içeriği açıklaması burada yer alacak.</p>
-                        <a href="{{ route('jurnallar') }}" class="card-btn">Detaylar</a>
+                        <p>Bütün jurnallarımızı kəşf edin.</p>
+                        <a href="{{ route('jurnallar') }}" class="card-btn">Detallar</a>
                     </div>
                 </div>
             </section>
@@ -183,9 +218,12 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2025 GYMD YAYINLARI. Bütün hüquqlar qorunur.</p>
+            <p>GYMD yayinalri.ge © 2025 | Created By: <a href="https://www.instagram.com/allakhverdov.s/" target="_blank">SACode</a></p>
         </div>
     </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" title="Yukarı Çık"></button>
 
     <script src="{{ asset('js/scripts.js') }}"></script>
 </body>

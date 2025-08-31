@@ -1,28 +1,78 @@
-// scripts.js - Tüm JavaScript kodları
+// scripts.js - Basit ve Çalışan JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // --------- Burger menü ve mobil menü işlemleri ---------
+    // Burger menü ve mobil menü işlemleri
     const burgerIcon = document.querySelector('.burger-icon');
     const mobileMenu = document.querySelector('.mobile-menu');
     
-    // Burger menü tıklama olayı
-    burgerIcon.addEventListener('click', function() {
-        this.classList.toggle('open');
+    // Backdrop oluştur
+    let backdrop = document.querySelector('.mobile-menu-backdrop');
+    if (!backdrop) {
+        backdrop = document.createElement('div');
+        backdrop.className = 'mobile-menu-backdrop';
+        document.body.appendChild(backdrop);
+    }
+    
+    // Burger menü toggle fonksiyonu
+    function toggleMobileMenu() {
+        const isOpen = mobileMenu.classList.contains('open');
         
-        if (mobileMenu.classList.contains('open')) {
+        if (isOpen) {
+            // Menüyü kapat
+            burgerIcon.classList.remove('open');
             mobileMenu.classList.remove('open');
-            mobileMenu.style.display = 'none';
+            backdrop.classList.remove('show');
+            document.body.style.overflow = 'auto';
+            
+            setTimeout(() => {
+                if (!mobileMenu.classList.contains('open')) {
+                    mobileMenu.style.display = 'none';
+                }
+            }, 300);
         } else {
-            mobileMenu.classList.add('open');
-            mobileMenu.style.display = 'block';
+            // Menüyü aç
+            mobileMenu.style.display = 'flex';
+            
+            setTimeout(() => {
+                burgerIcon.classList.add('open');
+                mobileMenu.classList.add('open');
+                backdrop.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }, 10);
+        }
+    }
+    
+    // Burger menü tıklama
+    if (burgerIcon) {
+        burgerIcon.addEventListener('click', function(e) {
+            e.preventDefault();
+            toggleMobileMenu();
+        });
+    }
+    
+    // Backdrop tıklama - menüyü kapat
+    if (backdrop) {
+        backdrop.addEventListener('click', function() {
+            if (mobileMenu.classList.contains('open')) {
+                toggleMobileMenu();
+            }
+        });
+    }
+    
+    // ESC tuşu ile kapat
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && mobileMenu.classList.contains('open')) {
+            toggleMobileMenu();
         }
     });
     
-    // Ekran boyutu değiştiğinde mobil menüyü kapat
+    // Ekran boyutu değiştiğinde menüyü kapat
     window.addEventListener('resize', function() {
-        if (window.innerWidth > 767) {
+        if (window.innerWidth > 767 && mobileMenu.classList.contains('open')) {
             burgerIcon.classList.remove('open');
             mobileMenu.classList.remove('open');
+            backdrop.classList.remove('show');
             mobileMenu.style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
     });
     
@@ -34,27 +84,12 @@ document.addEventListener('DOMContentLoaded', function() {
     // Arama fonksiyonu
     function performSearch(searchTerm) {
         if (searchTerm.trim() === '') {
-            alert('Lütfen bir arama terimi girin.');
+            alert('Zəhmət olmasa axtarış termini daxil edin.');
             return;
         }
         
         // Arama sonuçları sayfasına yönlendir
-        // Not: Bu kısmı kendi backend yapınıza göre düzenleyin
         window.location.href = `/search?q=${encodeURIComponent(searchTerm)}`;
-        
-        // Alternatif olarak AJAX ile arama yapabilirsiniz:
-        /*
-        fetch(`/api/search?q=${encodeURIComponent(searchTerm)}`)
-            .then(response => response.json())
-            .then(data => {
-                // Arama sonuçlarını işle
-                console.log('Arama sonuçları:', data);
-                // Sonuçları göstermek için gerekli işlemleri yapın
-            })
-            .catch(error => {
-                console.error('Arama hatası:', error);
-            });
-        */
     }
     
     // Arama ikonlarına tıklama olayı ekle
@@ -224,5 +259,27 @@ document.addEventListener('DOMContentLoaded', function() {
             quoteContainer.addEventListener('mouseenter', stopAutoQuote);
             quoteContainer.addEventListener('mouseleave', startAutoQuote);
         }
+    }
+    
+    // --------- Scroll to Top işlevi ---------
+    const scrollToTopBtn = document.querySelector('.scroll-to-top');
+    
+    if (scrollToTopBtn) {
+        // Sayfa kaydırıldığında butonu göster/gizle
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
+        });
+        
+        // Butona tıklandığında yukarı kaydır
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     }
 });

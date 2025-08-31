@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('journals', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->text('description')->nullable();
+            $table->string('cover_image')->nullable(); // Kapak görseli yolu
+            $table->string('pdf_file')->nullable();    // PDF dosyası yolu
             $table->timestamps();
         });
     }

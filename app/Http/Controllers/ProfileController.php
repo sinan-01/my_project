@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 
 class ProfileController extends Controller
@@ -26,13 +27,42 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request->user();
+        $data = $request->validated();
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        // Profil fotoğrafı yükleme
+        if ($request->hasFile('profile_photo')) {
+            $file = $request->file('profile_photo');
+            
+            // Dosya türü ve boyut kontrolü
+            $allowedMimeTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+            $maxSize = 2 * 1024 * 1024; // 2MB
+            
+            if (!in_array($file->getMimeType(), $allowedMimeTypes)) {
+                return Redirect::route('profile.edit')->withErrors(['profile_photo' => 'Sadece JPEG, PNG, JPG ve GIF formatları desteklenir.']);
+            }
+            
+            if ($file->getSize() > $maxSize) {
+                return Redirect::route('profile.edit')->withErrors(['profile_photo' => 'Dosya boyutu 2MB\'den küçük olmalıdır.']);
+            }
+            
+            // Eski profil fotoğrafını sil
+            if ($user->profile_photo && Storage::disk('public')->exists($user->profile_photo)) {
+                Storage::disk('public')->delete($user->profile_photo);
+            }
+            
+            // Yeni profil fotoğrafını yükle
+            $profilePhotoPath = $request->file('profile_photo')->store('profile-photos', 'public');
+            $data['profile_photo'] = $profilePhotoPath;
         }
 
-        $request->user()->save();
+        $user->fill($data);
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $user->save();
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

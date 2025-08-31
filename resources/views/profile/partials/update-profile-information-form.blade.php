@@ -1,3 +1,6 @@
+@php
+use Illuminate\Support\Facades\Storage;
+@endphp
 <section>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
@@ -13,9 +16,37 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
         @csrf
         @method('patch')
+
+        <!-- Mevcut Profil Fotoğrafı -->
+        <div>
+            <x-input-label for="current_photo" :value="__('Current Profile Photo')" />
+            <div class="mt-2">
+                @if($user->profile_photo && Storage::disk('public')->exists($user->profile_photo))
+                    <img src="{{ asset('storage/' . $user->profile_photo) }}" 
+                         alt="Profile Photo" 
+                         class="w-20 h-20 rounded-full object-cover border-2 border-gray-300">
+                @else
+                    <div class="w-20 h-20 rounded-full bg-gray-200 flex items-center justify-center border-2 border-gray-300">
+                        <span class="text-gray-500 text-sm">No Photo</span>
+                    </div>
+                @endif
+            </div>
+        </div>
+
+        <!-- Yeni Profil Fotoğrafı Yükle -->
+        <div>
+            <x-input-label for="profile_photo" :value="__('Profile Photo')" />
+            <input id="profile_photo" 
+                   name="profile_photo" 
+                   type="file" 
+                   class="mt-1 block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100" 
+                   accept="image/*" />
+            <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">{{ __("Supported formats: JPEG, PNG, JPG, GIF. Max size: 2MB") }}</p>
+            <x-input-error class="mt-2" :messages="$errors->get('profile_photo')" />
+        </div>
 
         <div>
             <x-input-label for="name" :value="__('Name')" />

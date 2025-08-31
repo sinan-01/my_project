@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'profile_photo',
     ];
 
     /**
@@ -44,5 +45,37 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    /**
+     * Get the user's profile photo URL.
+     *
+     * @return string|null
+     */
+    public function getProfilePhotoUrlAttribute(): ?string
+    {
+        return $this->hasProfilePhoto() ? asset('storage/' . $this->profile_photo) : null;
+    }
+
+    /**
+     * Get the safe profile photo URL with fallback.
+     *
+     * @return string
+     */
+    public function getSafeProfilePhotoUrl(): string
+    {
+        return $this->hasProfilePhoto() 
+            ? asset('storage/' . $this->profile_photo)
+            : asset('asset/images/profile/profile-image.png');
+    }
+
+    /**
+     * Check if user has profile photo.
+     *
+     * @return bool
+     */
+    public function hasProfilePhoto(): bool
+    {
+        return !empty($this->profile_photo) && \Illuminate\Support\Facades\Storage::disk('public')->exists($this->profile_photo);
     }
 }
